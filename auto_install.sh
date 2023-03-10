@@ -31,6 +31,7 @@ if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
         ln -s ~/Documents/Software/scripts/omz_upgrade.sh ~/.local/bin/scripts/omz_upgrade
         ln -s ~/Documents/Software/dot_files/gitconfig ~/.gitconfig
         ln -s ~/Documents/Software/dot_files/gitignore ~/.gitignore
+        ln -s ~/Documents/Software/dot_files/latexmkrc ~/.latexmkrc
     fi
 fi
 
