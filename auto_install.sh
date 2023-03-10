@@ -30,8 +30,7 @@ if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
         mkdir -p ~/.config/latexmk &&
         ln -s ~/Documents/Software/scripts/auto_update.sh ~/.local/bin/scripts/auto_update &&
         ln -s ~/Documents/Software/scripts/omz_upgrade.sh ~/.local/bin/scripts/omz_upgrade &&
-        ln -s ~/Documents/Software/dot_files/gitconfig ~/.gitconfig &&
-        ln -s ~/Documents/Software/dot_files/gitignore ~/.gitignore &&
+        ln -s ~/Documents/Software/dot_files/git ~/.config &&
         ln -s ~/Documents/Software/dot_files/latexmkrc ~/.config/latexmk/latexmkrc
     fi
 fi
