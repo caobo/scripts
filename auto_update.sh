@@ -3,7 +3,7 @@
 # directory: .local/bin/scripts
 
 # homebrew update
-brew update
+brew update 1> /dev/null
 
 # homebrew upgrade and cleanup
 if [ "$?" = "0" ]; then
