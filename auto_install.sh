@@ -18,8 +18,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 if [ "$?" = "0" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+if [ "$?" = "0" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
-ln -snf ~/Documents/Software/dot_files/zshrc ~/.zshrc && source ~/.zshrc
+ln -snf ~/Documents/Software/dot_files/zshrc ~/.zshrc && source ~/.zshrc &&
+ln -snf ~/Documents/Software/dot_files/zprofile ~/.zprofile 
 
 # Install zsh extensions
 if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
