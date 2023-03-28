@@ -50,7 +50,9 @@ if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
         ln -s ~/Documents/Software/dot_files/latexmk ~/.config && \
         ln -s ~/Documents/Software/dot_files/nvim ~/.config && \
         ln -s ~/Documents/Software/dot_files/zed ~/.config && \
-        ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc
+        ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc && \
+        ln -s ~/Documents/Software/dot_files/yabai ~/.config && \
+        ln -s ~/Documents/Software/dot_files/skhd ~/.config
     fi
 fi
 
