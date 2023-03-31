@@ -43,16 +43,10 @@ if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
 # Link my configuration files into the propriety directories
     if [ "$?" = "0" ]; then
         mkdir -p ~/.local/bin && \
-        mkdir -p ~/.config && \
         ln -s ~/Documents/Software/scripts/auto_update.sh ~/.local/bin/auto_update && \
         ln -s ~/Documents/Software/scripts/omz_upgrade.sh ~/.local/bin/omz_upgrade && \
-        ln -s ~/Documents/Software/dot_files/git ~/.config && \
-        ln -s ~/Documents/Software/dot_files/latexmk ~/.config && \
-        ln -s ~/Documents/Software/dot_files/nvim ~/.config && \
-        ln -s ~/Documents/Software/dot_files/zed ~/.config && \
-        ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc && \
-        ln -s ~/Documents/Software/dot_files/yabai ~/.config && \
-        ln -s ~/Documents/Software/dot_files/skhd ~/.config
+        ln -s ~/Documents/Software/dot_files/config ~/.config && \
+        ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc
     fi
 fi
 
