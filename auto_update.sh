@@ -10,7 +10,7 @@ if [ "$?" = "0" ]; then
     if [ $(brew outdated | wc -c) -eq 0 ]; then
         echo -e "\033[36mHomebrew formulas are up to date\033[0m\n"
     else
-        brew upgrade && brew cleanup
+        brew upgrade &&  brew cleanup
         if [ "$?" = "0" ]; then
             echo -e "\033[36mHomebrew formulas are updated\033[0m\n"
         fi

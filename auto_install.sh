@@ -30,7 +30,7 @@ if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
     git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
     ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting &&
-    git clone https://github.com/zthxxx/jovial.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/jovial&&
+    git clone https://github.com/zthxxx/jovial.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/jovial &&
     source ~/.zshrc
 # Install font and beta-version software taps
     if [ "$?" = "0" ]; then
@@ -43,10 +43,12 @@ if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
 # Link my configuration files into the propriety directories
     if [ "$?" = "0" ]; then
         mkdir -p ~/.local/bin && \
+        rm -rf ~/.config && \
         ln -s ~/Documents/Software/scripts/auto_update.sh ~/.local/bin/auto_update && \
         ln -s ~/Documents/Software/scripts/omz_upgrade.sh ~/.local/bin/omz_upgrade && \
         ln -s ~/Documents/Software/dot_files/config ~/.config && \
-        ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc
+        ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc && \
+        touch ~/.hushlogin
     fi
 fi
 
