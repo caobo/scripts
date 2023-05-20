@@ -49,7 +49,6 @@ else
 fi
 
 # print result
-
 function repeatf() {
     for i in {1..90}; do echo -n "$1"; done
 }
