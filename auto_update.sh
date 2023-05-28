@@ -1,62 +1,63 @@
 #!/bin/zsh
 
-# directory: .local/bin/scripts
+# Define text styles
+BLUE='\033[36m'
+RESET='\033[0m'
 
-# homebrew update
-brew update 1> /dev/null
+# Update Homebrew
+brew update > /dev/null
 
-# homebrew upgrade and cleanup
-if [ "$?" = "0" ]; then
-    if [ $(brew outdated | wc -c) -eq 0 ]; then
-        echo -e "\033[36mHomebrew formulas are up to date\033[0m\n"
+# Upgrade and cleanup Homebrew formulas
+if [ $? -eq 0 ]; then
+    if [ -z "$(brew outdated)" ]; then
+        echo -e "${BLUE}Homebrew formulas are up to date${RESET}\n"
     else
-        brew upgrade &&  brew cleanup
-        if [ "$?" = "0" ]; then
-            echo -e "\033[36mHomebrew formulas are updated\033[0m\n"
+        brew upgrade && brew cleanup
+        if [ $? -eq 0 ]; then
+            echo -e "${BLUE}Homebrew formulas are updated${RESET}\n"
         fi
     fi
 else
     exit 1
 fi
 
-# texlive update
-if [ "$?" = "0" ]; then
+# Update texlive packages
+if [ $? -eq 0 ]; then
     sudo tlmgr update --self --all
-    if [ "$?" = "0" ]; then
-        echo -e "\033[36mTexlive packages are updated\033[0m\n"
+    if [ $? -eq 0 ]; then
+        echo -e "${BLUE}Texlive packages are updated${RESET}\n"
     fi
 else
     exit 1
 fi
 
-# omz update and pip update when given argument "all"
-if [ "$?" = "0" ]; then
+# Update Oh My Zsh and Python packages when "all" argument is provided
+if [ $? -eq 0 ]; then
     if [ "$1" = "all" ]; then
-        # $ZSH/tools/upgrade.sh
         omz_upgrade
-            if [ "$?" = "0" ]; then
-                echo -e "\033[36momz extensions are updated\033[0m\n"
-                pip-review --auto
-                if [ "$?" = "0" ]; then
-                    echo -e "\033[36mPython packages are updated\033[0m\n"
-                fi
-            else
-                exit 1
+        if [ $? -eq 0 ]; then
+            echo -e "${BLUE}Oh My Zsh extensions are updated${RESET}\n"
+            pip-review --auto
+            if [ $? -eq 0 ]; then
+                echo -e "${BLUE}Python packages are updated${RESET}\n"
             fi
+        else
+            exit 1
+        fi
     fi
 else
     exit 1
 fi
 
-# print result
-function repeatf() {
-    for i in {1..90}; do echo -n "$1"; done
+# Print result
+# Function to repeat a character a certain number of times
+repeatf() {
+    local char=$1
+    local count=$2
+    printf "%*s" "$count" | tr ' ' "$char"
 }
-
-if [ "$?" = "0" ]; then
-    printf -- "-%.0s" {1..90}; echo
-    echo -e "\033[36mAll packages are up to date\033[0m"
-    printf -- "-%.0s" {1..90}; echo
-else
-    exit 1
-fi
+repeatf "-" | tr -d '\n'
+echo
+echo -e "${BLUE}All packages are up to date${RESET}"
+repeatf "-" | tr -d '\n'
+echo
