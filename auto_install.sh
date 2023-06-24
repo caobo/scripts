@@ -26,7 +26,7 @@ ln -snf ~/Documents/Software/dot_files/zshrc ~/.zshrc && source ~/.zshrc &&
 ln -snf ~/Documents/Software/dot_files/zprofile ~/.zprofile 
 
 # Install zsh extensions
-if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
+if [ $(brew doctor) = "Your system is ready to brew." ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
     git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
     ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting &&
@@ -44,8 +44,6 @@ if [[ $(brew doctor) =~ "Your system is ready to brew." ]]; then
     if [ "$?" = "0" ]; then
         mkdir -p ~/.local/bin && \
         rm -rf ~/.config && \
-        ln -s ~/Documents/Software/scripts/auto_update.sh ~/.local/bin/auto_update && \
-        ln -s ~/Documents/Software/scripts/omz_upgrade.sh ~/.local/bin/omz_upgrade && \
         ln -s ~/Documents/Software/dot_files/config ~/.config && \
         ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc && \
         touch ~/.hushlogin
