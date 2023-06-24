@@ -6,21 +6,21 @@ RESET='\033[0m'
 
 # Update Homebrew
 brew update > /dev/null &&
-    ( ([ -z "$(brew outdated)" ] && echo "${BLUE}Homebrew formulas are up to date${RESET}\n") ||
+    ( ([ -z "$(brew outdated)" ] && echo "${BLUE}Homebrew formulas are up to date${RESET}") ||
     ( brew upgrade && brew cleanup )
-) || echo "${BLUE}Homebrew formulas are updated${RESET}\n"
+) || echo "${BLUE}Homebrew formulas are updated${RESET}"
 
 # Update texlive packages
 if [ $? -eq 0 ]; then
     sudo tlmgr update --self --all &&
-    echo "${BLUE}Texlive packages are updated${RESET}\n"
+    echo "${BLUE}Texlive packages are updated${RESET}"
 fi
 
 # Update Oh My Zsh and Python packages when "all" argument is provided
 if [ $? -eq 0 ]; then
     if [ "$1" = "all" ]; then
-        omz_upgrade && ( echo "${BLUE}Oh My Zsh extensions are updated${RESET}\n" && pip-review --auto ) &&
-            echo  "${BLUE}Python packages are updated${RESET}\n"
+        omz_upgrade && ( echo "${BLUE}Oh My Zsh extensions are updated${RESET}" && pip-review --auto ) &&
+            echo  "${BLUE}Python packages are updated${RESET}"
     fi
 fi
 
