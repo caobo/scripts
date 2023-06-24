@@ -1,52 +1,27 @@
-#!/bin/zsh
+#!/bin/sh
 
 # Define text styles
 BLUE='\033[36m'
 RESET='\033[0m'
 
 # Update Homebrew
-brew update > /dev/null
-
-# Upgrade and cleanup Homebrew formulas
-if [ $? -eq 0 ]; then
-    if [ -z "$(brew outdated)" ]; then
-        echo -e "${BLUE}Homebrew formulas are up to date${RESET}\n"
-    else
-        brew upgrade && brew cleanup
-        if [ $? -eq 0 ]; then
-            echo -e "${BLUE}Homebrew formulas are updated${RESET}\n"
-        fi
-    fi
-else
-    exit 1
-fi
+brew update > /dev/null &&
+    ( ([ -z "$(brew outdated)" ] && echo "${BLUE}Homebrew formulas are up to date${RESET}\n") ||
+    ( brew upgrade && brew cleanup )
+) || echo "${BLUE}Homebrew formulas are updated${RESET}\n"
 
 # Update texlive packages
 if [ $? -eq 0 ]; then
-    sudo tlmgr update --self --all
-    if [ $? -eq 0 ]; then
-        echo -e "${BLUE}Texlive packages are updated${RESET}\n"
-    fi
-else
-    exit 1
+    sudo tlmgr update --self --all &&
+    echo "${BLUE}Texlive packages are updated${RESET}\n"
 fi
 
 # Update Oh My Zsh and Python packages when "all" argument is provided
 if [ $? -eq 0 ]; then
     if [ "$1" = "all" ]; then
-        omz_upgrade
-        if [ $? -eq 0 ]; then
-            echo -e "${BLUE}Oh My Zsh extensions are updated${RESET}\n"
-            pip-review --auto
-            if [ $? -eq 0 ]; then
-                echo -e "${BLUE}Python packages are updated${RESET}\n"
-            fi
-        else
-            exit 1
-        fi
+        omz_upgrade && ( echo "${BLUE}Oh My Zsh extensions are updated${RESET}\n" && pip-review --auto ) &&
+            echo  "${BLUE}Python packages are updated${RESET}\n"
     fi
-else
-    exit 1
 fi
 
 # Print result
@@ -58,6 +33,6 @@ repeatf() {
 }
 repeatf "-" | tr -d '\n'
 echo
-echo -e "${BLUE}All packages are up to date${RESET}"
+echo "${BLUE}All packages are up to date${RESET}"
 repeatf "-" | tr -d '\n'
 echo

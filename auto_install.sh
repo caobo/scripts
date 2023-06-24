@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 # Accept the xcode license agreement
 sudo xcodebuild -license accept&& \
