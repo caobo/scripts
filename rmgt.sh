@@ -8,8 +8,7 @@ fzf --height=~100% --cycle --info=inline --border=rounded)
 (
 if [ "$(uname)" = "Linux" ]; then
     sed -i "\|"$LINE"$|d" "$GT_LIST"
-fi
-if [ "$(uname)" = "Darwin" ]; then
+elif [ "$(uname)" = "Darwin" ]; then
     sed -i '' "\|"$LINE"$|d" "$GT_LIST"
 fi
 )

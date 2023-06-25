@@ -19,8 +19,7 @@ fi
 # Update Oh My Zsh and Python packages when "all" argument is provided
 if [ $? -eq 0 ]; then
     if [ "$1" = "all" ]; then
-        omz_upgrade && ( echo "${BLUE}Oh My Zsh extensions are updated${RESET}" && pip-review --auto ) &&
-            echo  "${BLUE}Python packages are updated${RESET}"
+        pip-review --auto  && echo  "${BLUE}Python packages are updated${RESET}"
     fi
 fi
 
