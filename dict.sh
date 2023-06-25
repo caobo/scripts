@@ -1,4 +1,16 @@
 #!/bin/sh
 
 # Dictionary
-[ -n "$1" ] && curl dict.org/d:"$1" | less || echo "Give me word to search"
+
+if [ -n "$1" ]; then
+    dict_word="$1"
+else
+    if [ "$(uname)" = "Darwin" ]; then
+        dict_word="$(pbpaste)"
+    elif [ "$(uname)" = "Linux" ]; then
+        dict_word="$(wl-paste)"
+    fi
+fi
+
+sdcv "$dict_word" | less
+

@@ -2,7 +2,7 @@
 
 # Spell check function
 if [ "$(uname)" = "Darwin" ]; then
-    [ -n "$1" ] && WORD="$1" || WORD=$(pbpaste|less)
+    [ -n "$1" ] && WORD="$1" || WORD=$(pbpaste)
 elif [ "$(uname)" = "Linux" ]; then
     [ -n "$1" ] && WORD="$1"|| WORD=$(wl-paste|less)
 fi
