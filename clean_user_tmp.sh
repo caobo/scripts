@@ -1,16 +1,21 @@
 #!/bin/sh
 
-touch "$HOME/tmp/log/"
-
-# Make a list for files that to be cleaned
-file="$(fd ".*" "$HOME/tmp" -d 1 --change-older-than 7d)"
 log_time="$(date +"%F")"
-echo "$file" > "$HOME/tmp/log/clean_list_$log_time"
-# Cleanup file listed in the clean_list
-if [ -n "$file" ]; then
-while IFS= read -r i; do
-    rm -rdf "$i"
-done < "$HOME/tmp/log/clean_list_$log_time"
+
+# Check if already did the cleanup 
+if [ ! -f "$HOME/tmp/log/clean_list_$log_time" ]; then
+    # Update the time stamp of the log folder
+    touch "$HOME/tmp/log/"
+    # Make a list for files that to be cleaned
+    file="$(fd ".*" "$HOME/tmp" -d 1 --change-older-than 7d)"
+    # Create a clean list file
+    echo "$file" > "$HOME/tmp/log/clean_list_$log_time"
+    # Cleanup file listed in the clean_list
+    if [ -n "$file" ]; then
+    while IFS= read -r i; do
+        rm -rdf "$i"
+    done < "$HOME/tmp/log/clean_list_$log_time"
+    fi
 fi
 
 # Find the old log file and clean it
