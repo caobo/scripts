@@ -12,5 +12,4 @@ else
     fi
 fi
 
-sdcv "$dict_word" | less
-
+sdcv "$dict_word" | less -RFX
