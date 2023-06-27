@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# Dictionary
-
+# Dictionary uses stardict.
 if [ -n "$1" ]; then
     dict_word="$1"
 else

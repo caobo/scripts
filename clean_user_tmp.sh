@@ -1,10 +1,11 @@
 #!/bin/sh
 
+# Set the timestamp
 log_time="$(date +"%F")"
 
-# Check if already did the cleanup 
+# Check if already did the cleanup today
 if [ ! -f "$HOME/tmp/log/clean_list_$log_time" ]; then
-    # Update the time stamp of the log folder
+    # Update the timestamp of the log folder
     touch "$HOME/tmp/log/"
     # Make a list for files that to be cleaned
     file="$(fd ".*" "$HOME/tmp" -d 1 --change-older-than 7d)"

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Upload file to "transfer.in", and then copy the url to the system clipboard.
+# This script works in macOS and Linux mathines uses wayland.
 full_name="$1"
 file_name="$(echo "$full_name" | awk -F '/' '{print $NF}')"
 
