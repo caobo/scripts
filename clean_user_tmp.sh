@@ -8,7 +8,7 @@ if [ ! -f "$HOME/tmp/log/clean_list_$log_time" ]; then
     # Update the timestamp of the log folder
     touch "$HOME/tmp/log/"
     # Make a list for files that to be cleaned
-    file="$(fd ".*" "$HOME/tmp" -d 1 --change-older-than 7d)"
+    file="$(find "$HOME/tmp" -maxdepth 1 -ctime +7)"
     # Create a clean list file
     printf "$file\n" > "$HOME/tmp/log/clean_list_$log_time"
     # Cleanup file listed in the clean_list
@@ -20,7 +20,7 @@ if [ ! -f "$HOME/tmp/log/clean_list_$log_time" ]; then
 fi
 
 # Find the old log file and clean it
-log_file="$(fd '.*' "$HOME/tmp/log" --change-older-than 7d)"
+log_file="$(find "$HOME/tmp/log" -ctime +7)"
 if [ -n "$log_file" ]; then
     printf "$log_file\n" > "$HOME/tmp/clean_list_for_log"
     while IFS= read -r i; do
