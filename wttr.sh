@@ -1,3 +1,3 @@
 #!/bin/sh
 
-[ -n "$1" ] && curl https://wttr.in/"$1" | less -RXF || curl https://wttr.in | less -RXF
+[ -n "$1" ] && curl https://wttr.in/"$1" | less -RXF || curl https://wttr.in/jinan | less -RXF
