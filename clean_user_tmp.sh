@@ -4,18 +4,18 @@
 log_time="$(date +"%F")"
 
 # Check if already did the cleanup today
-if [ ! -f "$HOME/tmp/log/clean_list_$log_time.txt" ]; then
+if [ ! -f "$HOME/tmp/log/clean_list_$log_time.log" ]; then
     # Update the timestamp of the log folder
     touch "$HOME/tmp/log/"
     # Make a list for files that to be cleaned
     file="$(find "$HOME/tmp" -maxdepth 1 -ctime +7)"
     # Create a clean list file
-    printf "$file\n" > "$HOME/tmp/log/clean_list_$log_time.txt"
+    printf "$file\n" > "$HOME/tmp/log/clean_list_$log_time.log"
     # Cleanup file listed in the clean_list
     if [ -n "$file" ]; then
         while IFS= read -r i; do
             rm -rd "$i"
-        done < "$HOME/tmp/log/clean_list_$log_time.txt"
+        done < "$HOME/tmp/log/clean_list_$log_time.log"
     fi
 fi
 
