@@ -5,7 +5,8 @@ log_time="$(date +"%F")"
 
 # Check if already did the cleanup today
 if [ ! -f "$HOME/tmp/log/clean_list_$log_time.log" ]; then
-    # Update the timestamp of the log folder
+    # Make sure user tmp directory and its log directory exist, then update the timestamp of the log folder
+    mkdir -p "$HOME/tmp/log"
     touch "$HOME/tmp/log/"
     # Make a list for files that to be cleaned
     file="$(find "$HOME/tmp" -maxdepth 1 -ctime +7)"
@@ -14,7 +15,7 @@ if [ ! -f "$HOME/tmp/log/clean_list_$log_time.log" ]; then
     # Cleanup file listed in the clean_list
     if [ -n "$file" ]; then
         while IFS= read -r i; do
-            rm -rd "$i"
+            rm -r "$i"
         done < "$HOME/tmp/log/clean_list_$log_time.log"
     fi
 fi
