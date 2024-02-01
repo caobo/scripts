@@ -9,7 +9,7 @@ if [ ! -f "$HOME/tmp/log/clean_list_$log_time.log" ]; then
     mkdir -p "$HOME/tmp/log"
     touch "$HOME/tmp/log/"
     # Make a list for files that to be cleaned
-    file="$(find "$HOME/tmp" -maxdepth 1 -ctime +7)"
+    file="$(find "$HOME/tmp" -maxdepth 1 -ctime +15)"
     # Create a clean list file
     printf "$file\n" > "$HOME/tmp/log/clean_list_$log_time.log"
     # Cleanup file listed in the clean_list
@@ -21,7 +21,7 @@ if [ ! -f "$HOME/tmp/log/clean_list_$log_time.log" ]; then
 fi
 
 # Find the old log file and clean it
-log_file="$(find "$HOME/tmp/log" -ctime +7)"
+log_file="$(find "$HOME/tmp/log" -ctime +15)"
 if [ -n "$log_file" ]; then
     printf "$log_file\n" > "$HOME/tmp/clean_list_for_log"
     while IFS= read -r i; do
