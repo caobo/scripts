@@ -22,8 +22,9 @@ if [ "$?" = "0" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-ln -snf ~/Documents/Software/dot_files/zshrc ~/.zshrc && source ~/.zshrc &&
+ln -s ~/Documents/Software/dot_files/profile ~/.profile
 ln -snf ~/Documents/Software/dot_files/zprofile ~/.zprofile 
+ln -snf ~/Documents/Software/dot_files/zshrc ~/.zshrc && source ~/.zshrc &&
 
 # Install zsh extensions
 if [ $(brew doctor) = "Your system is ready to brew." ]; then
@@ -47,6 +48,7 @@ if [ $(brew doctor) = "Your system is ready to brew." ]; then
         ln -s ~/Documents/Software/dot_files/config ~/.config && \
         ln -s ~/Documents/Software/dot_files/vimrc ~/.vimrc && \
         touch ~/.hushlogin
+        ln -s $HOME/Documents/Software/dot_files/Rime $HOME/Library/
     fi
 fi
 
