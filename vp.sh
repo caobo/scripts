@@ -8,5 +8,5 @@ filename="$( fd . "$dirname" --max-depth 2 -t f -x file --mime-type | awk -F ":"
 if [ -n "$filename" ]; then
     mpv "$filename"
 else
-    echo "No file selected."
+    echo "No file has been selected."
 fi
