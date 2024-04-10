@@ -4,5 +4,5 @@
 FILE=$(fd '.*' "$HOME/Documents/Software/dot_files" -t f -x file --mime-type |
     awk -F ':' '/.*:.*text|empty/ { print $1}' |
     fzf -d '/' --with-nth='-2','-1' --height=~100% --cycle --preview 'bat --color=always {}'\
-    --info=inline --border=rounded --header="Edit config files" --header-first --prompt="Searching >_ ")
+    --border=rounded --header="Edit config files" --header-first --prompt="Searching >_ ")
     [ -z "$FILE" ] && echo "Please select a file." || nvim "$FILE"
