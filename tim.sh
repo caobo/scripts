@@ -24,6 +24,7 @@ main() {
     # If tmux is not running or current shell is not in tmux session
     if [ -z "$tmux_running" ]; then
         tmux new-session -s "$selected_name" -c "$selected"
+        exit 0
     fi
 
     # If tmux session with selected name does not exist, create a new one
