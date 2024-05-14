@@ -2,7 +2,7 @@
 
 # Function to select a directory if not provided as an argument
 select_directory() {
-    selected=$(find $HOME/Documents/Code $HOME/Documents/Calculation/Python -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find $HOME/Documents/Code $HOME/Documents/Calculation/Python -mindepth 1 -maxdepth 1 -type d | fzf-tmux -p80%)
 }
 
 # Main function
