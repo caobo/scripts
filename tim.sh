@@ -2,42 +2,40 @@
 
 # Function to select a directory if not provided as an argument
 select_directory() {
-    selected=$(find $HOME/Documents/Code $HOME/Documents/Calculation/Python -mindepth 1 -maxdepth 1 -type d | fzf-tmux -p80%)
+    gt_list="$HOME/.config/zsh/gt_list"
+    selected_dir=$(fd "." $HOME/Documents/Code $HOME/Documents/Calculation/Python --min-depth 1 --max-depth 1 --type d)
+    gt_dir="$(cat "$gt_list")"
+    selected=$(echo "$gt_dir,$selected_dir" |\
+        fzf-tmux -p80% --preview 'ls -a {}' --preview-label="Dir preview"\
+        --header="Go To Directory" --header-first --prompt="Go to >_ ")
 }
 
-# Main function
-main() {
-    if [ $# -eq 1 ]; then
-        selected="$1"
-    else
-        select_directory
-    fi
+if [ $# -eq 1 ]; then
+    selected="$1"
+else
+    select_directory
+fi
 
-    # Exit if no directory is selected
-    if [ -z "$selected" ]; then
-        exit 0
-    fi
+if [ -z "$selected" ]; then
+    echo "Please specify a directory"
+    exit 1
+fi
 
-    selected_name=$(basename "$selected" | tr . _)
-    tmux_running=$(pgrep tmux)
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
 
-    # If tmux is not running or current shell is not in tmux session
-    if [ -z "$tmux_running" ]; then
-        tmux new-session -s "$selected_name" -c "$selected"
-        exit 0
-    fi
+if [ -z "$tmux_running" ]; then
+    tmux new-session -s "$selected_name" -c "$selected"
+    exit 0
+fi
 
-    # If tmux session with selected name does not exist, create a new one
-    if ! tmux has-session -t="$selected_name" 2> /dev/null; then
-        tmux new-session -ds "$selected_name" -c "$selected"
-    fi
+if ! tmux has-session -t "$selected_name" 2> /dev/null; then
+    tmux new-session -ds "$selected_name" -c "$selected"
+fi
 
-    if [ -z "$TMUX" ]; then
-        tmux attach-session -t "$selected_name"
-    else
-        tmux switch-client -t "$selected_name"
-    fi
-}
+if [ -z "$TMUX" ]; then
+    tmux attach-session -t "$selected_name"
+    exit 0
+fi
 
-# Run main function
-main "$@"
+tmux switch-client -t "$selected_name"
