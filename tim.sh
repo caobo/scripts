@@ -3,9 +3,9 @@
 # Function to select a directory if not provided as an argument
 select_directory() {
     gt_list="$HOME/.config/zsh/gt_list"
-    selected_dir=$(fd "." $HOME/Documents/Code $HOME/Documents/Calculation/Python --min-depth 1 --max-depth 1 --type d)
+    additional_list=$(fd "." $HOME/Documents/Code $HOME/Documents/Calculation/Python --min-depth 1 --max-depth 1 --type d)
     gt_dir="$(cat "$gt_list")"
-    selected=$(echo "$gt_dir,$selected_dir" |\
+    selected=$(echo "$gt_dir\n $additional_list" |\
         fzf-tmux -p80% --preview 'ls -a {}' --preview-label="Dir preview"\
         --header="Go To Directory" --header-first --prompt="Go to >_ ")
 }
@@ -18,7 +18,7 @@ fi
 
 if [ -z "$selected" ]; then
     echo "Please specify a directory"
-    exit 1
+    exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
