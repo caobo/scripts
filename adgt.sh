@@ -6,7 +6,7 @@ GT_LIST="$HOME/.config/zsh/gt_list"
 
 [ -z "$@" ] && GT_ITEM="$(pwd)" || GT_ITEM="$@"
 
-if grep -q "$GT_ITEM" "$GT_LIST"; then
+if grep -q "$GT_ITEM$" "$GT_LIST"; then
     echo "$GT_ITEM is already there ^_^"
     exit 0
 fi
