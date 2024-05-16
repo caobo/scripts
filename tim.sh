@@ -14,6 +14,10 @@ select_directory() {
 }
 
 if [ $# -eq 1 ]; then
+    if ! [ -d $1 ]; then
+        echo "Oops, $1 is not a valid directory."
+        exit 0
+    fi
     selected="$1"
 else
     select_directory
