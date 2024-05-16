@@ -1,27 +1,29 @@
 #!/bin/sh
 
-# import my goto list
+# Import my goto list
 gt_list="$HOME/.config/zsh/gt_list"
 
 # Function to select a directory if not provided as an argument
 select_directory() {
-    # search directories that in Code
-    additional_list=$(fd "." "$HOME/Documents/Code/C"\
-        "$HOME/Documents/Code/rust"\
-        "$HOME/Documents/Calculation/Python"\
+    # Search directories related to Code
+    additional_list=$(fd "." \
+        "$HOME/Documents/Code/C" \
+        "$HOME/Documents/Code/rust" \
+        "$HOME/Documents/Calculation/Python" \
         --min-depth 1 --max-depth 1 --type d)
-    # list directories in my goto list
-    gt_dir="$(cat "$gt_list")"
-    # list git repos
-    git_dir="$(fd "^.git$" ~/Documents/ --type d -HI --prune | xargs dirname)"
+    
+    # Read directories from the goto and git lists
+    gt_dir=$(cat "$gt_list")
+    git_dir=$(fd "^.git$" ~/Documents --type d -HI --prune | xargs dirname)
 
-    selected=$(echo "$gt_dir\n$additional_list" |\
-        fzf-tmux -p80% --preview 'ls -a {}' --preview-label="Dir preview"\
-        --header="Go To Directory" --header-first --prompt="Go to >_ ")
+    selected=$(echo "$gt_dir\n$additional_list" | \
+        fzf-tmux -p 80% --preview 'ls -a {}' --preview-label "Dir preview" \
+        --header "Go To Directory" --header-first --prompt "Go to >_ ")
 }
 
-if [ $# -eq 1 ]; then
-    if ! [ -d $1 ]; then
+
+if [ -n "$1" ]; then
+    if [ ! -d "$1" ]; then
         echo "Oops, $1 is not a valid directory."
         exit 0
     fi
