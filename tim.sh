@@ -10,7 +10,8 @@ select_directory() {
         "$HOME/Documents/Code/C" \
         "$HOME/Documents/Code/rust" \
         "$HOME/Documents/Calculation/Python" \
-        --min-depth 1 --max-depth 1 --type d)
+        --min-depth 1 --max-depth 1 --type d\
+    )
     
     # Read directories from the goto and git lists
     gt_dir=$(cat "$gt_list")
@@ -18,13 +19,22 @@ select_directory() {
 
     selected=$(echo "$gt_dir\n$additional_list" | \
         fzf-tmux -p 80% --preview 'ls -a {}' --preview-label "Dir preview" \
-        --header "Go To Directory" --header-first --prompt "Go to >_ ")
+        --header "Go To Directory" --header-first --prompt "Go to >_ "\
+    )
 }
 
-
+# Analizy the input argument
 if [ -n "$1" ]; then
+    if tmux has-session -t "$1" 2> /dev/null; then
+        if [ -n "$TMUX" ]; then
+            tmux switch-client -t "$1"
+        else
+            tmux attach-session -t "$1"
+        fi
+        exit 0
+    fi
     if [ ! -d "$1" ]; then
-        echo "Oops, $1 is not a valid directory."
+        echo "Oops, $1 is not a valid directory nor existing session name."
         exit 0
     fi
     selected="$1"
@@ -32,11 +42,13 @@ else
     select_directory
 fi
 
+# Cheak if there is a selected goto target.
 if [ -z "$selected" ]; then
     echo "Please specify a directory"
     exit 0
 fi
 
+# If a valid directory is selected then create or swith to that session.
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
