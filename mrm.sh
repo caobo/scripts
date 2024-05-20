@@ -14,4 +14,5 @@ fi
 
 printf "%s\n" "$ITEMS" | while IFS= read -r i; do
     rm -rd "$i"
+    echo "Successfully removed "$i""
 done
