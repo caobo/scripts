@@ -21,7 +21,7 @@ select_directory() {
     # Read directories from my goto list
     gt_dir=$(cat "$gt_list")
     # Read directories that are git repos
-    git_dir=$(fd "^.git$" "$HOME/Documents/Code" --type d -HI --prune | xargs dirname)
+    git_dir=$(fd "^.git$" "$HOME/Documents/Code" --type d -HI --prune | xargs -P8 -I{} dirname {})
 
     # select a directory
     selected=$(echo "$gt_dir\n$additional_list" | \
