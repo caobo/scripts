@@ -32,7 +32,10 @@ switch_session() {
 
 main() {
 # Analizy the input argument
-if [ -n "$1" ]; then
+if [ "$#" -eq 2 ] && [ "$1" = "-n" ]; then
+    mkdir -p "$NOTEDIR/$2"
+    selected="$NOTEDIR/$2"
+elif [ -n "$1" ]; then
     if tmux has-session -t "$1" 2> /dev/null; then
         switch_session "$1"
         exit 0
