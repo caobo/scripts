@@ -17,6 +17,7 @@ select_directory() {
         "$HOME/Documents/Code/rust" \
         "$HOME/Documents/Calculation/Python" \
         "$HOME/Documents/Calculation/Golang" \
+        "$HOME/Documents/Calculation/CLang" \
         --min-depth 1 --max-depth 1 --type d\
     )
     # Read directories from my goto list
