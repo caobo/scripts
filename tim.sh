@@ -27,7 +27,7 @@ select_directory() {
 
     # select a directory
     selected=$(echo "$gt_dir\n$additional_list" | \
-        fzf-tmux -p80% --reverse --preview 'ls -a {}' --preview-label "Dir preview" \
+        fzf-tmux -p60% --reverse --preview 'ls -a {}' --preview-label "Dir preview" \
         --header "Go To Directory" --header-first --prompt "Go to >_ "\
     )
 }
