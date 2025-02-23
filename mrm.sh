@@ -2,9 +2,9 @@
 
 if [ -z "$1" ]; then
     DIR="$(pwd)"
-    ITEMS="$(find "$DIR" -mindepth 1 | fzf-tmux -p --reverse --delimiter "/" --with-nth="-3","-2","-1" -m)"
+    ITEMS="$(find "$DIR" -mindepth 1 | fzf --delimiter "/" --with-nth="-3","-2","-1" -m)"
 else
-    ITEMS="$(find "$1" -mindepth 1 | fzf-tmux -p --reverse --delimiter "/" --with-nth="-3","-2","-1" -m)"
+    ITEMS="$(find "$1" -mindepth 1 | fzf --delimiter "/" --with-nth="-3","-2","-1" -m)"
 fi
 
 if [ -z "$ITEMS" ]; then

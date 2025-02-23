@@ -16,7 +16,7 @@ select_directory() {
         --min-depth 1 --max-depth 1 --type d\
     )
     selected=$(echo "$note_list" | \
-        fzf-tmux -p80% --reverse --preview 'ls -a {}' --preview-label "Notes directories preview" \
+        fzf --preview 'lsd -a --color 'always' --icon 'always' {}' --preview-label "Notes directories preview" \
         --header "Go To Note" --header-first --prompt "Go to >_ "\
     )
 }

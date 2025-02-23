@@ -8,7 +8,7 @@ if [ -z "$TARGET_DIR" ]; then
     exit 0
 fi
 
-ITEMS="$(find "$CURRENT_DIR" -mindepth 1 | fzf-tmux -p --reverse --delimiter "/" --with-nth="-3","-2","-1" --preview 'bat --color=always {}' -m)"
+ITEMS="$(find "$CURRENT_DIR" -mindepth 1 | fzf --delimiter "/" --with-nth="-3","-2","-1" --preview 'bat --color=always {}' -m)"
 
 if [ -z "$ITEMS" ]; then
     echo "Nothing has moved"

@@ -3,7 +3,7 @@
 # Edit selected file in the current folder
 FILE=$(fd '.*' $(pwd) -t f | xargs -P8 -I{} file --mime-type {} |
     awk -F ':' '/.*:.*text|empty/ { print $1}' |
-    fzf-tmux -p60% --border --reverse --delimiter '/' --with-nth='-2','-1' --cycle --preview 'bat --color=always {}'\
+    fzf --delimiter '/' --with-nth='-2','-1' --cycle --preview 'bat --color=always {}'\
     --header="Edit files in current directory" --header-first\
     --prompt="Searching >_ ")
 
