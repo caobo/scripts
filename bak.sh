@@ -4,10 +4,11 @@ DATE="$(date +"%F")"
 BAK_DIR="/Volumes/CBSD/bak"
 
 if ! [ -d "/Volumes/CBSD/" ]; then
-    exit 1
+    exit 0
 fi
 
 if grep -q "$DATE" "$BAK_DIR/bak.log"; then
+    df -h | grep "/Volumes/CBSD" | awk '{print $1}' | xargs diskutil unmount
     exit 0
 fi
 
