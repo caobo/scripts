@@ -14,4 +14,4 @@ fi
 rsync -avzhP --stats --exclude='*\.git' "$HOME/Documents" "$BAK_DIR"
 
 touch "$BAK_DIR/bak.log"
-echo "$DATE" >> "$BAK_DIR/bak.log"
+echo "on $DATE: backup completed" >> "$BAK_DIR/bak.log"
