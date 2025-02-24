@@ -1,12 +1,13 @@
 #!/usr/bin/env dash
 
 DATE="$(date +"%F")"
+BAK_DIR="/Volumes/CBSD/bak"
 
 if ! [ -d "/Volumes/CBSD/" ]; then
-    echo "Please plug in the backup disk."
-else
-    rsync -avzhP --stats "$HOME/Documents" "/Volumes/CBSD/bak"
-    cd /Volumes/CBSD/bak || exit 1;
-    git add .
-    git commit -m "$DATE"
+    exit 1
 fi
+
+rsync -avzhP --stats --exclude='*\.git' "$HOME/Documents" "$BAK_DIR"
+
+touch "$BAK_DIR/bak.log"
+echo "$DATE" >> "$BAK_DIR/bak.log"
