@@ -7,7 +7,7 @@ if ! [ -d "/Volumes/CBSD/" ]; then
     exit 1
 fi
 
-rsync -avzhP --stats "$HOME/Documents" "$BAK_DIR"
+rsync -avzhP --stats --exclude='*\.git' "$HOME/Documents" "$BAK_DIR"
 
 touch "$BAK_DIR/bak.log"
 echo "$DATE" >> "$BAK_DIR/bak.log"
