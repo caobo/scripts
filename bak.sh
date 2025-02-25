@@ -2,16 +2,18 @@
 
 DATE="$(date +"%F")"
 BAK_DIR="/Volumes/CBSD/bak"
+MOUNT_POINT="/Volumes/CBSD"
 
-if ! [ -d "/Volumes/CBSD/" ]; then
+if ! [ -d "$MOUNT_POINT" ]; then
     exit 0
 fi
 
-if grep -q "$DATE" "$BAK_DIR/bak.log"; then
-    df -h | grep "/Volumes/CBSD" | awk '{print $1}' | xargs diskutil unmount
+if grep -q "$DATE" "$BAK_DIR/bak.log" 2>/dev/null; then
+    diskutil unmount "$MOUNT_POINT"
     exit 0
 fi
 
+mkdir -p "$BAK_DIR"
 rsync -avzhP --stats --exclude='*\.git' "$HOME/Documents" "$BAK_DIR"
 
 touch "$BAK_DIR/bak.log"
