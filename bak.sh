@@ -15,7 +15,7 @@ if grep -q "$DATE" "$BAK_DIR/bak.log" 2>/dev/null; then
 fi
 
 mkdir -p "$BAK_DIR"
-rsync -avzhP --stats --exclude='*\.git' "$HOME/Documents" "$BAK_DIR"
+rsync -azhP --stats --exclude='*\.git' "$HOME/Documents" "$BAK_DIR"
 
 touch "$BAK_DIR/bak.log"
 echo "on $DATE: backup completed" >> "$BAK_DIR/bak.log"
