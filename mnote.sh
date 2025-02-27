@@ -6,7 +6,7 @@
 # Created date: Dec 11, 2024
 
 # Import Notes directory
-NOTEDIR="$HOME/Documents/Notes/Random_notes/"
+NOTEDIR="$HOME/Documents/Notes/Meeting_notes/"
 
 # Function to select a directory if not provided as an argument
 select_directory() {
