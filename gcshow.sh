@@ -1,4 +1,4 @@
-#/usr/bin/env dash
+#!/usr/bin/env dash
 
 main() {
 local COMMIT=$(git log --pretty=format:"%h - %s (%ar)" -10 | \
