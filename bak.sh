@@ -10,7 +10,7 @@ if ! [ -d "$MOUNT_POINT" ]; then
 fi
 
 if grep -q "$DATE" "$BAK_DIR/bak.log" 2>/dev/null; then
-    $DISKUTIL unmount "$MOUNT_POINT"
+    $DISKUTIL umount force "$MOUNT_POINT"
     exit 0
 fi
 
