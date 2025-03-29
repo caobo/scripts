@@ -1,9 +1,9 @@
-#!/usr/bin/env dash
+#!/bin/sh
 
 DATE="$(date +"%F")"
 BAK_DIR="/Volumes/CBSD/bak"
 MOUNT_POINT="/Volumes/CBSD"
-DISKUTIL="/usr/sbin/diskutil"
+DISKUTIL="$(which diskutil)"
 
 if ! [ -d "$MOUNT_POINT" ]; then
     exit 0
