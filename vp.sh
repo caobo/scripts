@@ -4,7 +4,7 @@
 
 filename="$(
   fd . "$dirname" --max-depth 2 -t f -0\
-    | xargs -0 -n1 file --mime-type -- \
+    | xargs -0 -n1 -P8 file --mime-type -- \
     | awk -F':' '/video/ {print $1}' \
     | fzf --delimiter "/" --with-nth='-2','-1' --header="Play video" --header-first --prompt="Searching video >_ "
 )"
