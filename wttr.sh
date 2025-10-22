@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 [ -n "$1" ] && curl https://wttr.in/"$1" | less -RXF || curl https://wttr.in/jinan | less -RXF

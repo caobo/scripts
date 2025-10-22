@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Remove a goto directory
 GT_LIST="$HOME/.config/zsh/gt_list"

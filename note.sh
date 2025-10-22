@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env dash
+
 # A shell script for swithing notes direcories utilizing tmux session functionality.
 # To use this script you need to install fzf, fd, and tmux.
 # =====================

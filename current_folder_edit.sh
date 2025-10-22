@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Edit selected file in the current folder
 FILE=$(fd '.*' $(pwd) -t f -0 | xargs -0 -P10 -n1 file --mime-type 2>/dev/null |

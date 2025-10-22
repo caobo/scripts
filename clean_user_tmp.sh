@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Set the timestamp
 log_time="$(date +"%F")"

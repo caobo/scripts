@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Dictionary uses stardict.
 if [ -n "$1" ]; then

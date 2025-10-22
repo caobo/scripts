@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Open selected folder in Finder
 FOLDER=$(fd '.*' $(pwd) -t d -d 3 |

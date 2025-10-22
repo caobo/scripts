@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Exit on errors and prevent unset variable usage
 set -eu

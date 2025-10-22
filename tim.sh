@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 # A shell script for swithing direcories utilizing tmux session functionality.
 # This script is inspired by The Primeagen's tmuxsessionizer script.
 # To use this script you need to install fzf, fd, and tmux.

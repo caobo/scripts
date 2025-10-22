@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 [ -n "$1" ] && dirname="$1" || dirname="$(pwd)"
 

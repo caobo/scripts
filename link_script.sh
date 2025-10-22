@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Auto chmod all my scripts and make symbolic links of which to $HOME/.local/bin/
 file_path="$HOME/Documents/Software/scripts"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 # Edit selected file in the dot_files folder
 FILE=$(fd '.*' "$HOME/Documents/Software/dot_files" -t f | xargs -P10 -I{} file --mime-type {} |
