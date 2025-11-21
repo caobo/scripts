@@ -24,7 +24,7 @@ update_homebrew() {
     if [ -z "$(brew outdated)" ]; then
         info_message "Homebrew formulas are up to date"
     else
-        brew upgrade && brew cleanup
+        brew upgrade && brew cleanup && brew cleanup --prune=all
         info_message "Homebrew formulas updated and cleaned"
     fi
 }

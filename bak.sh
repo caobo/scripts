@@ -3,8 +3,7 @@
 DATE="$(date +"%F")"
 BAK_DIR="/Volumes/CBSD/bak"
 MOUNT_POINT="/Volumes/CBSD"
-# DISKUTIL="$(which diskutil)"
-HDIUTIL="/usr/bin/hdiutil"
+DISKUTIL="$(which diskutil)"
 
 mkdir -p "$BAK_DIR"
 touch "$BAK_DIR/bak.log"
@@ -14,8 +13,7 @@ if ! [ -d "$MOUNT_POINT" ]; then
 fi
 
 if grep -q "$DATE" "$BAK_DIR/bak.log" 2>/dev/null; then
-    # $DISKUTIL umount "$MOUNT_POINT"
-    $HDIUTIL detach "$MOUNT_POINT"
+    $DISKUTIL umount "$MOUNT_POINT"
     exit 0
 fi
 
