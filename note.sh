@@ -7,7 +7,7 @@
 # Created date: Jun 11, 2024
 
 # Import Notes directory
-NOTEDIR="$HOME/Documents/Notes/Reading_notes/"
+NOTEDIR="$HOME/Documents/Notes/"
 
 # Function to select a directory if not provided as an argument
 select_directory() {
@@ -16,7 +16,8 @@ select_directory() {
         $NOTEDIR \
         --min-depth 1 --max-depth 1 --type d\
     )
-    selected=$(echo "$note_list" | \
+    note_dir_list="$NOTEDIR\n$note_list"
+    selected=$(echo "$note_dir_list" | \
         fzf --preview 'lsd -a --color 'always' --icon 'always' {}' --preview-label "Notes directories preview" \
         --header "Go To Note" --header-first --prompt "Go to >_ "\
     )
