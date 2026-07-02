@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 
 # Edit selected file in the current folder
-FILE=$(fd '.*' $(pwd) --no-ignore --exclude 'Alfred' -t f -0 | xargs -0 -P10 -n1 file --mime-type 2>/dev/null |
+FILE=$(fd '.*' "$(pwd)" --no-ignore --exclude 'Alfred' -t f -0 | xargs -0 -P10 -n1 file --mime-type 2>/dev/null |
     awk -F ':' '/.*:.*text|empty/ { print $1}' |
     fzf --delimiter '/' --with-nth='-2','-1' --cycle --preview 'bat --color=always {}'\
     --header="Edit files in current directory" --header-first\
